@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Stack, TextField, PrimaryButton } from '@fluentui/react';
 import { connect } from 'react-redux';
+import '../App.css';
 
 const AddTodo = (props) => {
 	const [todoInfo, setTodoInfo] = useState({ name: '', description: '' });
@@ -20,7 +21,7 @@ const AddTodo = (props) => {
 	return (
 		<Stack>
 			<Stack vertical>
-				<Stack.Item gap="25">
+				<Stack.Item>
 					<TextField
 						name="name"
 						placeholder="Add title"
@@ -28,7 +29,7 @@ const AddTodo = (props) => {
 						onChange={changeHandler}
 					/>
 				</Stack.Item>
-				<Stack.Item gap="25">
+				<Stack.Item>
 					<TextField
 						name="description"
 						placeholder="Add description"

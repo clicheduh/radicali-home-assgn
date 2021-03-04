@@ -3,6 +3,7 @@ import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import { Stack } from '@fluentui/react';
 import { connect } from 'react-redux';
+import '../App.css';
 
 const Home = (props) => {
 	const { todos } = props;

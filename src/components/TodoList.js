@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Label } from '@fluentui/react';
 import TodoItem from './TodoItem';
 import { connect } from 'react-redux';
+import '../App.css';
 
 const TodoList = (props) => {
 	return (
@@ -15,7 +16,7 @@ const TodoList = (props) => {
 					/>
 				))
 			) : (
-				<Label>Todo list is empty...</Label>
+				<Label>Woohoo! Todo list is empty.</Label>
 			)}
 		</Stack>
 	);

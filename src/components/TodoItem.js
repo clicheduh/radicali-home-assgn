@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 import {
 	Stack,
 	Label,
@@ -7,7 +8,8 @@ import {
 	DialogFooter,
 	DefaultButton,
 	PrimaryButton,
-	DialogType
+	DialogType,
+	Text
 } from '@fluentui/react';
 import { connect } from 'react-redux';
 
@@ -28,7 +30,7 @@ const TodoItem = (props) => {
 			>
 				<Stack vertical>
 					<Label>{props.todo.name}</Label>
-					<Label>{props.todo.description}</Label>
+					<Text>{props.todo.description}</Text>
 				</Stack>
 				<IconButton
 					iconProps={{ iconName: 'trash' }}
