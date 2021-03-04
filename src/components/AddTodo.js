@@ -1,30 +1,57 @@
 import React, { useState } from 'react';
 import { Stack, TextField, PrimaryButton } from '@fluentui/react';
+import { connect } from 'react-redux';
 
 const AddTodo = (props) => {
-	const [todoName, setTodoName] = useState('');
-	const addTodo = () => {
-		props.addTodo(todoName);
-		setTodoName('');
+	const [todoInfo, setTodoInfo] = useState({ name: '', description: '' });
+
+	const changeHandler = (e) => {
+		setTodoInfo({
+			...todoInfo,
+			[e.target.name]: e.target.value
+		});
 	};
-	const setTodo = (e) => {
-		setTodoName(e.target.value);
+
+	const handleClick = () => {
+		props.addTodo(todoInfo);
+		setTodoInfo({ name: '', description: '' });
 	};
 
 	return (
 		<Stack>
-			<Stack horizontal>
-				<Stack.Item grow>
+			<Stack vertical>
+				<Stack.Item gap="25">
 					<TextField
-						placeholder="Add new item"
-						value={todoName}
-						onChange={setTodo}
+						name="name"
+						placeholder="Add title"
+						value={todoInfo.name}
+						onChange={changeHandler}
 					/>
 				</Stack.Item>
-				<PrimaryButton onClick={addTodo}>Add</PrimaryButton>
+				<Stack.Item gap="25">
+					<TextField
+						name="description"
+						placeholder="Add description"
+						value={todoInfo.description}
+						onChange={changeHandler}
+					/>
+				</Stack.Item>
+				<PrimaryButton onClick={handleClick}>Add</PrimaryButton>
 			</Stack>
 		</Stack>
 	);
 };
 
-export default AddTodo;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addTodo: (todoInfo) => {
+			dispatch({ type: 'ADD_TODO', todoInfo: todoInfo });
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

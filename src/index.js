@@ -4,14 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Fabric, initializeIcons } from '@fluentui/react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers/rootReducer';
+
+const store = createStore(rootReducer);
 
 initializeIcons();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Fabric>
-			<App />
-		</Fabric>
+		<Provider store={store}>
+			<Fabric>
+				<App />
+			</Fabric>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

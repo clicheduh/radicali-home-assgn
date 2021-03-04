@@ -1,39 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import { Stack } from '@fluentui/react';
-import TodoList from './components/TodoList';
-import AddTodo from './components/AddTodo';
+import Home from './components/Home';
 
 const App = () => {
-	const [todos, setTodos] = useState([
-		{ id: 1, name: 'Todo Item 1' },
-		{ id: 2, name: 'Todo Item 2' }
-	]);
-
-	const addTodo = (todoName) => {
-		if (todoName != '') {
-			const newId = todos.length + 1;
-			const newTodos = [...todos, { id: newId, name: todoName }];
-			setTodos(newTodos);
-		}
-	};
-
-	const deleteTodo = (id) => {
-		const newTasks = todos.filter((todo) => {
-			return todo.id !== id;
-		});
-		setTodos(newTasks);
-	};
-
 	return (
 		<div className="App">
-			<Stack horizontalAlign="center">
-				<h1>Todo App using Fluent UI & React</h1>
-				<Stack style={{ width: 300 }} gap={25}>
-					<AddTodo addTodo={addTodo} />
-					<TodoList todos={todos} deleteTodo={deleteTodo} />
-				</Stack>
-			</Stack>
+			<Home />
 		</div>
 	);
 };

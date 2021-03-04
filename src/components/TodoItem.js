@@ -9,12 +9,13 @@ import {
 	PrimaryButton,
 	DialogType
 } from '@fluentui/react';
+import { connect } from 'react-redux';
 
 const TodoItem = (props) => {
 	const [openDeleteModal, setOpenModal] = useState(true);
 
-	const deleteTodo = (id) => {
-		props.deleteTodo(id);
+	const handleClick = () => {
+		props.deleteTodo(props.todo.id);
 		setOpenModal(true);
 	};
 
@@ -25,7 +26,10 @@ const TodoItem = (props) => {
 				verticalAlign="center"
 				horizontalAlign="space-between"
 			>
-				<Label>{props.todo.name}</Label>
+				<Stack vertical>
+					<Label>{props.todo.name}</Label>
+					<Label>{props.todo.description}</Label>
+				</Stack>
 				<IconButton
 					iconProps={{ iconName: 'trash' }}
 					className="clearButton"
@@ -47,12 +51,7 @@ const TodoItem = (props) => {
 				}}
 			>
 				<DialogFooter>
-					<PrimaryButton
-						text="Yes"
-						onClick={() => {
-							deleteTodo(props.todo.id);
-						}}
-					/>
+					<PrimaryButton text="Yes" onClick={handleClick} />
 					<DefaultButton
 						text="No"
 						onClick={() => {
@@ -65,4 +64,16 @@ const TodoItem = (props) => {
 	);
 };
 
-export default TodoItem;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		deleteTodo: (id) => {
+			dispatch({ type: 'DELETE_TODO', id: id });
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

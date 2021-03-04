@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stack, Label } from '@fluentui/react';
 import TodoItem from './TodoItem';
+import { connect } from 'react-redux';
 
 const TodoList = (props) => {
 	return (
@@ -20,4 +21,10 @@ const TodoList = (props) => {
 	);
 };
 
-export default TodoList;
+const mapStateToProps = (state) => {
+	return {
+		todos: state.todos
+	};
+};
+
+export default connect(mapStateToProps)(TodoList);
